@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>INF552 - 2020 - PC 09</title>
+    <script src="https://cdn.jsdelivr.net/npm/vega@5.17.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@4.17.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.12.2"></script>
+    <script type="text/javascript" src="js/d3.v6.min.js"></script>
+    <script type="text/javascript" src="js/ex09.js"></script>
+    <style type="text/css">
+        #all {
+            width: 1200;
+        }
+
+        #rightCol {
+            float: right;
+            font-family: sans-serif;
+        }
+
+        #heatmap {
+            margin-right: 150px;
+        }
+
+        #vega1 {
+            padding-top: 1em;
+        }
+
+        #vega2 {
+            padding-bottom: .5em;
+        }
+
+        .country {
+            stroke: #BBB;
+            vector-effect: non-scaling-stroke;
+            transition: all 0.2s ease-out;
+            stroke-width: 1px;
+        }
+
+        .country:hover {
+            cursor: pointer;
+            stroke-width: 2px;
+            stroke: black;
+            transition: all 0.2s ease-out;
+        }
+
+        #country {
+            stroke: #BBB;
+            vector-effect: non-scaling-stroke;
+            transition: all 0.2s ease-out;
+            stroke-width: 1px;
+        }
+
+        #country:hover {
+            cursor: pointer;
+            stroke-width: 2px;
+            stroke: black;
+            transition: all 0.2s ease-out;
+        }
+
+        .lake {
+            fill: #bcd1f1;
+            stroke: none;
+        }
+
+        .river {
+            fill: none;
+            stroke: #bcd1f1;
+            vector-effect: non-scaling-stroke;
+        }
+
+        #footer {
+            display: inline;
+            font-size: 10pt;
+            font-family: monospace;
+        }
+
+        #cmds {
+            display: inline-block;
+            margin-top: .5em;
+            font-family: sans-serif;
+        }
+
+        #cmds_state {
+            display: inline-block;
+            margin-top: .5em;
+            font-family: sans-serif;
+        }
+
+        #info,
+        #last_update,
+        #current_time,
+        #hide_planes,
+        #cmds,
+        #cmds_state {
+            margin-top: 1em;
+            height: 1em;
+            font-family: monospace;
+        }
+
+        #origin_legend_svg {
+            display: inline-block;
+            font-family: monospace;
+            text-align: center;
+        }
+
+        svg {
+            display: inline-block;
+        }
+
+        #on_ground {
+            display: block;
+        }
+
+        div.tooltip {
+            position: absolute;
+            opacity: 0.8;
+            z-index: 1000;
+            text-align: left;
+            border-radius: 4px;
+            -moz-border-radius: 4px;
+            -webkit-border-radius: 4px;
+            padding: 8px;
+            color: #fff;
+            background-color: #000;
+            font: 12px sans-serif;
+            max-width: 300px;
+            max-height: 60px;
+        }
+    </style>
+</head>
+
+<body onload="createViz()">
+    <div id="all">
+        <div id="rightCol">
+            <div id="heatmap"></div>
+            <div id="on_ground"></div>
+        </div>
+        <div id="main">
+        </div>
+        <div id="footer">
+            <div id="cmds">Update: <input type="button" value="On" onclick="toggleUpdate();" id="updateBt" />
+            </div>
+            <div id="cmds_state">Update is currently <b>OFF</b></div>
+            <div id="show_planes">Show planes : <input type="checkbox" id="show_planes_cb" name="show_planes_cb"
+                    onclick="toggleUpdateShowPlanes()" checked></div>
+        </div>
+
+        <div id="inTheAir"></div>
+    </div>
+</body>
+
+</html>
